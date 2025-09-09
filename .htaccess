@@ -1,0 +1,10 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# # Set base directory
+# RewriteBase /Vaegarcon/
+
+# Redirect to index.php if not a file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
