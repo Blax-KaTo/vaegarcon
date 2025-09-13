@@ -14,10 +14,10 @@ class HomeController extends BaseController {
         // Set page title
         $this->setData('pageTitle', 'Vaegarcon - Fuel & Telemetry Engineering Solutions');
         
-        // Load any models if needed
-        // $serviceModel = $this->loadModel('ServiceModel');
-        // $services = $serviceModel->getAllServices();
-        // $this->setData('services', $services);
+        // Load SiteSettingsModel to get hero images
+        $siteSettingsModel = $this->loadModel('SiteSettingsModel');
+        $heroImages = $siteSettingsModel->getActiveHeroImages();
+        $this->setData('heroImages', $heroImages);
         
         // Render the view
         $this->render('home/index');

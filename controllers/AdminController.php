@@ -342,8 +342,8 @@ class AdminController extends BaseController {
                     $updateData['image_path'] = $imagePath;
                     
                     // Delete old image if it exists and is not the default
-                    if (!empty($heroImage['image_path']) && file_exists(ROOT_PATH . '/' . $heroImage['image_path'])) {
-                        @unlink(ROOT_PATH . '/' . $heroImage['image_path']);
+                    if (!empty($heroImage['image_path']) && file_exists(BASE_PATH . '/' . $heroImage['image_path'])) {
+                @unlink(BASE_PATH . '/' . $heroImage['image_path']);
                     }
                 } else {
                     $errors['image'] = 'Failed to upload image';
@@ -382,8 +382,8 @@ class AdminController extends BaseController {
         
         if ($heroImage) {
             // Delete the image file if it exists
-            if (!empty($heroImage['image_path']) && file_exists(ROOT_PATH . '/' . $heroImage['image_path'])) {
-                @unlink(ROOT_PATH . '/' . $heroImage['image_path']);
+            if (!empty($heroImage['image_path']) && file_exists(BASE_PATH . '/' . $heroImage['image_path'])) {
+                @unlink(BASE_PATH . '/' . $heroImage['image_path']);
             }
             
             $result = $this->siteSettingsModel->deleteHeroImage($id);
@@ -424,7 +424,7 @@ class AdminController extends BaseController {
     // Handle file upload
     private function handleFileUpload($fileInputName, $targetDir) {
         // Create target directory if it doesn't exist
-        $targetDirPath = ROOT_PATH . '/' . $targetDir;
+        $targetDirPath = BASE_PATH . '/' . $targetDir;
         if (!file_exists($targetDirPath)) {
             mkdir($targetDirPath, 0755, true);
         }
@@ -454,7 +454,7 @@ class AdminController extends BaseController {
         }
         
         // Upload file
-        if (move_uploaded_file($_FILES[$fileInputName]['tmp_name'], ROOT_PATH . '/' . $targetFilePath)) {
+        if (move_uploaded_file($_FILES[$fileInputName]['tmp_name'], BASE_PATH . '/' . $targetFilePath)) {
             return $targetFilePath;
         }
         

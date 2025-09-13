@@ -87,6 +87,28 @@ include VIEWS_PATH . '/layouts/header.php';
                     <a href="<?php echo BASE_URL; ?>/services/dataAnalytics" class="btn-secondary">Learn More</a>
                 </div>
             </div>
+            
+            <!-- Renewable Energy Solutions -->
+            <div class="service-card large">
+                <div class="service-image">
+                    <img src="<?php echo BASE_URL; ?>/images/services/renewable-energy.jpg" alt="Renewable Energy Solutions">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>Renewable Energy Solutions</h3>
+                    <p>Our innovative solar solutions provide sustainable energy alternatives for your operations. We design, implement, and maintain solar power systems that reduce costs and environmental impact.</p>
+                    <ul class="service-features">
+                        <li>Solar panel installation and maintenance</li>
+                        <li>Energy storage solutions</li>
+                        <li>Hybrid power systems integration</li>
+                        <li>Energy consumption monitoring</li>
+                        <li>ROI and sustainability reporting</li>
+                    </ul>
+                    <a href="<?php echo BASE_URL; ?>/services/renewableEnergy" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>

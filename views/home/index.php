@@ -3,6 +3,13 @@
 
 // Include header
 include VIEWS_PATH . '/layouts/header.php';
+
+// Fetch active hero images directly from the database
+require_once INCLUDES_PATH . '/db.php';
+require_once MODELS_PATH . '/SiteSettingsModel.php';
+$db = Database::getInstance()->getConnection();
+$siteSettingsModel = new SiteSettingsModel($db);
+$heroImages = $siteSettingsModel->getActiveHeroImages();
 ?>
 
 <!-- Hero Section -->
@@ -13,14 +20,35 @@ include VIEWS_PATH . '/layouts/header.php';
             <span>Engineering Solutions</span></h1>
             <p>Delivering reliable, data-driven technology for safe, efficient, and profitable operations across Africa.</p>
             <div class="hero-slider">
-                <?php
-                $industryImages = glob(__DIR__ . '/../../img/industries/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
-                ?>
-                <?php foreach ($industryImages as $imgPath): ?>
-                    <div class="slide">
-                        <img src="<?php echo BASE_URL . '/img/industries/' . basename($imgPath); ?>" alt="Industry Image">
-                    </div>
-                <?php endforeach; ?>
+                <?php if (!empty($heroImages)): ?>
+                    <?php foreach ($heroImages as $image): ?>
+                        <div class="slide">
+                            <img src="<?php echo BASE_URL . '/' . $image['image_path']; ?>" alt="<?php echo htmlspecialchars($image['title']); ?>">
+                            <?php if (!empty($image['title']) || !empty($image['description'])): ?>
+                                <div class="slide-content">
+                                    <?php if (!empty($image['title'])): ?>
+                                        <h2><?php echo htmlspecialchars($image['title']); ?></h2>
+                                    <?php endif; ?>
+                                    <?php if (!empty($image['description'])): ?>
+                                        <p><?php echo htmlspecialchars($image['description']); ?></p>
+                                    <?php endif; ?>
+                                    <?php if (!empty($image['button_text']) && !empty($image['button_link'])): ?>
+                                        <a href="<?php echo htmlspecialchars($image['button_link']); ?>" class="btn"><?php echo htmlspecialchars($image['button_text']); ?></a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- Fallback to static images if no hero images in database -->
+                    <?php
+                    $industryImages = glob(__DIR__ . '/../../img/industries/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+                    foreach ($industryImages as $imgPath): ?>
+                        <div class="slide">
+                            <img src="<?php echo BASE_URL . '/img/industries/' . basename($imgPath); ?>" alt="Industry Image">
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
                 <button class="slider-prev" aria-label="Previous">&#10094;</button>
                 <button class="slider-next" aria-label="Next">&#10095;</button>
             </div>
