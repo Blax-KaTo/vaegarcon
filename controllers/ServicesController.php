@@ -32,12 +32,18 @@ class ServicesController extends BaseController {
     // Fuel management service details
     public function fuelManagement() {
         $this->setData('pageTitle', 'Fuel Management Systems - Vaegarcon');
-        $this->render('services/fuel-management');
+        $this->render('services/fuelManagement');
     }
     
     // Data analytics service details
     public function dataAnalytics() {
         $this->setData('pageTitle', 'Data Analytics Solutions - Vaegarcon');
-        $this->render('services/data-analytics');
+        $this->render('services/dataAnalytics');
+    }
+    
+    // Renewable energy service details
+    public function renewableEnergy() {
+        $this->setData('pageTitle', 'Renewable Energy Solutions - Vaegarcon');
+        $this->render('services/renewableEnergy');
     }
 }

@@ -32,7 +32,8 @@ include VIEWS_PATH . '/layouts/header.php';
                     </div>
                     <div class="contact-text">
                         <h3>Location</h3>
-                        <p>Johannesburg, South Africa</p>
+                        <p>Kitwe, Zambia</p>
+                        <p>Headquarters, Johannesburg, South Africa</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -41,7 +42,8 @@ include VIEWS_PATH . '/layouts/header.php';
                     </div>
                     <div class="contact-text">
                         <h3>Phone</h3>
-                        <p>+27 (0) 11 000 0000</p>
+                        <p>+27 72 567 8908</p>
+                        <p>+260 570 649 254</p>
                     </div>
                 </div>
                 <div class="contact-item">

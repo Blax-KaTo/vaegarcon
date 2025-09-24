@@ -430,7 +430,7 @@ nav ul li a:hover {
 .result-number {
     font-size: 3rem;
     font-weight: 700;
-    color: #0056b3;
+    color: #fff;
     margin-bottom: 10px;
 }
 
@@ -487,11 +487,11 @@ nav ul li a:hover {
 .about-card h3 {
     font-size: 1.3rem;
     margin-bottom: 15px;
-    color: #0056b3;
+    color: #fff;
 }
 
 .about-card p {
-    color: #666;
+    color: #fff;
 }
 
 /* Get statred section */
@@ -503,7 +503,7 @@ nav ul li a:hover {
 .get-started-header {
     font-size: 1.5rem;
     /* margin-bottom: 15px; */
-    color: #fa541c;
+    color: #fff;
 }
 
 .get-started-grid {
@@ -712,7 +712,7 @@ nav ul li a:hover {
 .result-number {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #ff6b00;
+    color: #fff;
     margin-bottom: 10px;
 }
 

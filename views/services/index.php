@@ -23,7 +23,7 @@ include VIEWS_PATH . '/layouts/header.php';
         
         <div class="services-grid">
             <!-- Telemetry & Tank Monitoring -->
-            <div class="service-card large">
+            <a href="<?php echo BASE_URL; ?>/services/telemetry" class="service-card large service-link">
                 <div class="service-image">
                     <img src="<?php echo BASE_URL; ?>/images/services/telemetry.jpg" alt="Telemetry & Tank Monitoring">
                 </div>
@@ -40,12 +40,11 @@ include VIEWS_PATH . '/layouts/header.php';
                         <li>Remote calibration capabilities</li>
                         <li>Historical data analysis</li>
                     </ul>
-                    <a href="<?php echo BASE_URL; ?>/services/telemetry" class="btn-secondary">Learn More</a>
+                    <span class="btn-secondary">Learn More</span>
                 </div>
-            </div>
-            
+            </a>
             <!-- Fuel Management Systems -->
-            <div class="service-card large">
+            <a href="<?php echo BASE_URL; ?>/services/fuelManagement" class="service-card large service-link">
                 <div class="service-image">
                     <img src="<?php echo BASE_URL; ?>/images/services/fuel-management.jpg" alt="Fuel Management Systems">
                 </div>
@@ -62,12 +61,11 @@ include VIEWS_PATH . '/layouts/header.php';
                         <li>Theft prevention measures</li>
                         <li>Inventory reconciliation</li>
                     </ul>
-                    <a href="<?php echo BASE_URL; ?>/services/fuelManagement" class="btn-secondary">Learn More</a>
+                    <span class="btn-secondary">Learn More</span>
                 </div>
-            </div>
-            
+            </a>
             <!-- Data Analytics -->
-            <div class="service-card large">
+            <a href="<?php echo BASE_URL; ?>/services/dataAnalytics" class="service-card large service-link">
                 <div class="service-image">
                     <img src="<?php echo BASE_URL; ?>/images/services/data-analytics.jpg" alt="Data Analytics">
                 </div>
@@ -84,12 +82,11 @@ include VIEWS_PATH . '/layouts/header.php';
                         <li>Cost optimization recommendations</li>
                         <li>Compliance and audit reporting</li>
                     </ul>
-                    <a href="<?php echo BASE_URL; ?>/services/dataAnalytics" class="btn-secondary">Learn More</a>
+                    <span class="btn-secondary">Learn More</span>
                 </div>
-            </div>
-            
+            </a>
             <!-- Renewable Energy Solutions -->
-            <div class="service-card large">
+            <a href="<?php echo BASE_URL; ?>/services/renewableEnergy" class="service-card large service-link">
                 <div class="service-image">
                     <img src="<?php echo BASE_URL; ?>/images/services/renewable-energy.jpg" alt="Renewable Energy Solutions">
                 </div>
@@ -106,9 +103,9 @@ include VIEWS_PATH . '/layouts/header.php';
                         <li>Energy consumption monitoring</li>
                         <li>ROI and sustainability reporting</li>
                     </ul>
-                    <a href="<?php echo BASE_URL; ?>/services/renewableEnergy" class="btn-secondary">Learn More</a>
+                    <span class="btn-secondary">Learn More</span>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </section>

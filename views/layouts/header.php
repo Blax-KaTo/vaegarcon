@@ -11,8 +11,11 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <h1><a href="<?php echo BASE_URL; ?>">Vaegar Consultant LTD</a></h1>
+            <div class="logo" style="display: flex; align-items: center;">
+                <a href="<?php echo BASE_URL; ?>/" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="/uploads/logo/logo.jpeg" alt="Vaegar Consulting Logo" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; margin-right: 12px; vertical-align: middle;" />
+                    <h1 style="display: inline-block; vertical-align: middle; margin: 0; font-size: 2rem; font-weight: bold; color: #fff;">Vaegar Consulting LTD</h1>
+                </a>
             </div>
             <nav>
                 <ul>
