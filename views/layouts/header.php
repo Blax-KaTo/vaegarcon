@@ -13,8 +13,8 @@
         <div class="container">
             <div class="logo" style="display: flex; align-items: center;">
                 <a href="<?php echo BASE_URL; ?>/" style="display: flex; align-items: center; text-decoration: none;">
-                    <img src="/uploads/logo/logo.jpeg" alt="Vaegar Consulting Logo" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; margin-right: 12px; vertical-align: middle;" />
-                    <h1 style="display: inline-block; vertical-align: middle; margin: 0; font-size: 2rem; font-weight: bold; color: #fff;">Vaegar Consulting LTD</h1>
+                    <img src="/uploads/logo/logo.jpeg" alt="Vaegar Consulting Logo" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; margin-right: 5px; vertical-align: middle;" />
+                    <h1 style="display: inline-block; vertical-align: middle; margin: 0; font-size: 1.5rem; font-weight: bold; color: #fff;"><span style="color: #ff7900;">Vaegar Con<span style="color: #007bff;">sulting LTD</span></h1>
                 </a>
             </div>
             <nav>

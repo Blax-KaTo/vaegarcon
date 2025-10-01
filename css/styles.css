@@ -1102,10 +1102,12 @@ nav a.active {
     position: relative;
 }
 .slide img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
+    width: 80%;
+    height: 300px;
+    object-fit: contain;
     border-radius: 18px;
+    margin: 0 auto;
+    display: block;
 }
 .slider-prev,
 .slider-next {

@@ -140,11 +140,27 @@ $heroImages = $siteSettingsModel->getActiveHeroImages();
         <div class="get-started-grid">
             <div class="get-started-card">
                 <div class="get-started-header">
-                    <h2 style="text-align: left;">Hello, Good morning...</h2>
+                    <h2 style="text-align: left;">
+                        <?php
+                        // Dynamic greeting based on current time
+                        date_default_timezone_set('Africa/Lagos'); // Set to your preferred timezone
+                        $hour = (int)date('G');
+                        if ($hour >= 5 && $hour < 12) {
+                            $greeting = 'Good morning';
+                        } elseif ($hour >= 12 && $hour < 17) {
+                            $greeting = 'Good afternoon';
+                        } elseif ($hour >= 17 && $hour < 21) {
+                            $greeting = 'Good evening';
+                        } else {
+                            $greeting = 'Hello';
+                        }
+                        echo "Hello, $greeting...";
+                        ?>
+                    </h2>
                 </div>
                 <h3>Get Started with Vaegarcon</h3>
                 <div class="btn-cont">
-                    <button class="get-started-btn">Services</button>
+                    <a href="<?php echo BASE_URL; ?>/services" class="get-started-btn">Services</a>
                 </div>
             </div>
         </div>
