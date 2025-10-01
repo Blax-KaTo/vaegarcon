@@ -42,6 +42,10 @@
                         <i class="fas fa-users"></i>
                         <span>Users</span>
                     </a>
+                    <a href="/admin/contactMessages">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Messages</span>
+                    </a>
                     <a href="/blog">
                         <i class="fas fa-eye"></i>
                         <span>View Blog</span>
@@ -113,6 +117,15 @@
                         <h3>Site Settings</h3>
                         <p>Configure site settings</p>
                         <a href="/admin/siteSettings" class="btn-primary">Settings</a>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Contact Messages</h3>
+                        <p>Manage contact form messages</p>
+                        <a href="/admin/contactMessages" class="btn-primary">View Messages</a>
                     </div>
                 </div>
             </div>

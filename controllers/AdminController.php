@@ -8,6 +8,7 @@ class AdminController extends BaseController {
     private $blogModel;
     private $userModel;
     private $siteSettingsModel;
+    private $contactModel;
     
     public function __construct() {
         parent::__construct();
@@ -20,6 +21,7 @@ class AdminController extends BaseController {
         $this->blogModel = $this->loadModel('BlogModel');
         $this->userModel = $this->loadModel('UserModel');
         $this->siteSettingsModel = $this->loadModel('SiteSettingsModel');
+        $this->contactModel = $this->loadModel('ContactModel');
     }
     
     // Admin dashboard
@@ -647,6 +649,85 @@ class AdminController extends BaseController {
             $this->redirect('/admin/users?success=User deleted successfully');
         } else {
             $this->redirect('/admin/users?error=Failed to delete user');
+        }
+    }
+
+    // Contact Messages Management
+    public function contactMessages() {
+        $status = $this->getQuery('status', 'all');
+        $messages = [];
+        
+        if ($status === 'all') {
+            $messages = $this->contactModel->getAllMessages();
+        } else {
+            $messages = $this->contactModel->getMessagesByStatus($status);
+        }
+        
+        $stats = $this->contactModel->getMessageStats();
+        
+        $this->setData('pageTitle', 'Contact Messages - Vaegarcon');
+        $this->setData('messages', $messages);
+        $this->setData('stats', $stats);
+        $this->setData('currentStatus', $status);
+        $this->render('admin/contact-messages');
+    }
+    
+    // View individual contact message
+    public function viewContactMessage($id = null) {
+        if (!$id) {
+            $this->redirect('/admin/contactMessages');
+        }
+        
+        $message = $this->contactModel->getMessageById($id);
+        
+        if (!$message) {
+            $this->redirect('/admin/contactMessages?error=Message not found');
+        }
+        
+        // Mark as read if it's new
+        if ($message['status'] === 'new') {
+            $this->contactModel->updateMessageStatus($id, 'read');
+            $message['status'] = 'read';
+        }
+        
+        $this->setData('pageTitle', 'View Message - Vaegarcon');
+        $this->setData('message', $message);
+        $this->render('admin/view-contact-message');
+    }
+    
+    // Update message status
+    public function updateContactMessageStatus($id = null) {
+        if (!$id) {
+            $this->redirect('/admin/contactMessages');
+        }
+        
+        $status = $this->getPost('status');
+        
+        if (!in_array($status, ['new', 'read', 'replied'])) {
+            $this->redirect('/admin/contactMessages?error=Invalid status');
+        }
+        
+        $result = $this->contactModel->updateMessageStatus($id, $status);
+        
+        if ($result) {
+            $this->redirect('/admin/contactMessages?success=Message status updated successfully');
+        } else {
+            $this->redirect('/admin/contactMessages?error=Failed to update message status');
+        }
+    }
+    
+    // Delete contact message
+    public function deleteContactMessage($id = null) {
+        if (!$id) {
+            $this->redirect('/admin/contactMessages');
+        }
+        
+        $result = $this->contactModel->deleteMessage($id);
+        
+        if ($result) {
+            $this->redirect('/admin/contactMessages?success=Message deleted successfully');
+        } else {
+            $this->redirect('/admin/contactMessages?error=Failed to delete message');
         }
     }
 

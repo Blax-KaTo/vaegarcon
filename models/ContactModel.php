@@ -56,5 +56,71 @@ class ContactModel {
         
         return null;
     }
+    
+    // Update message status
+    public function updateMessageStatus($id, $status) {
+        $id = (int) $id;
+        $status = $this->db->real_escape_string($status);
+        
+        $sql = "UPDATE contact_messages SET status = '$status' WHERE id = $id";
+        $result = $this->db->query($sql);
+        
+        return $result;
+    }
+    
+    // Delete message
+    public function deleteMessage($id) {
+        $id = (int) $id;
+        
+        $sql = "DELETE FROM contact_messages WHERE id = $id";
+        $result = $this->db->query($sql);
+        
+        return $result;
+    }
+    
+    // Get messages by status
+    public function getMessagesByStatus($status) {
+        $status = $this->db->real_escape_string($status);
+        
+        $sql = "SELECT * FROM contact_messages WHERE status = '$status' ORDER BY created_at DESC";
+        $result = $this->db->query($sql);
+        
+        $messages = [];
+        
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $messages[] = $row;
+            }
+        }
+        
+        return $messages;
+    }
+    
+    // Get message statistics
+    public function getMessageStats() {
+        $stats = [];
+        
+        // Total messages
+        $sql = "SELECT COUNT(*) as total FROM contact_messages";
+        $result = $this->db->query($sql);
+        $stats['total'] = $result->fetch_assoc()['total'];
+        
+        // New messages
+        $sql = "SELECT COUNT(*) as new_count FROM contact_messages WHERE status = 'new'";
+        $result = $this->db->query($sql);
+        $stats['new'] = $result->fetch_assoc()['new_count'];
+        
+        // Read messages
+        $sql = "SELECT COUNT(*) as read_count FROM contact_messages WHERE status = 'read'";
+        $result = $this->db->query($sql);
+        $stats['read'] = $result->fetch_assoc()['read_count'];
+        
+        // Replied messages
+        $sql = "SELECT COUNT(*) as replied_count FROM contact_messages WHERE status = 'replied'";
+        $result = $this->db->query($sql);
+        $stats['replied'] = $result->fetch_assoc()['replied_count'];
+        
+        return $stats;
+    }
 }
 ?>
