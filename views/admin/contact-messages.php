@@ -168,6 +168,9 @@
                                         <a href="/admin/viewContactMessage/<?php echo $message['id']; ?>" class="btn btn-primary">
                                             <i class="fas fa-eye"></i> View
                                         </a>
+                                        <button class="btn btn-primary reply-btn" data-email="<?php echo htmlspecialchars($message['email']); ?>" data-name="<?php echo htmlspecialchars($message['name']); ?>" data-subject="<?php echo htmlspecialchars($message['subject']); ?>">
+                                            <i class="fas fa-reply"></i> Reply
+                                        </button>
                                         <div class="status-dropdown">
                                             <button class="btn btn-secondary dropdown-toggle">
                                                 <i class="fas fa-edit"></i> Status
@@ -200,6 +203,50 @@
             </div>
         </main>
     </div>
+
+    <!-- Reply Modal -->
+    <div id="replyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reply to Message</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="replyForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="replyTo">To:</label>
+                        <input type="email" id="replyTo" name="replyTo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="replyName">Name:</label>
+                        <input type="text" id="replyName" name="replyName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="replySubject">Subject:</label>
+                        <input type="text" id="replySubject" name="replySubject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="replyMessage">Message:</label>
+                        <textarea id="replyMessage" name="replyMessage" rows="6" required placeholder="Type your reply here..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelReply">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="sendReply">
+                        <span class="btn-text">
+                            <i class="fas fa-paper-plane"></i> Send Reply
+                        </span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Sending...
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- EmailJS Integration -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <style>
         /* Base styles - Mobile first */
@@ -750,9 +797,168 @@
             outline: 2px solid var(--primary-color);
             outline-offset: 2px;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #64748b;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            padding: 20px 25px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group input[readonly] {
+            background-color: #f9fafb;
+            color: #6b7280;
+        }
+
+        .btn-loading {
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Modal Adjustments */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 20px;
+            }
+
+            .modal-header,
+            .modal-body,
+            .modal-footer {
+                padding: 15px 20px;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+            }
+
+            .modal-footer .btn {
+                width: 100%;
+            }
+        }
     </style>
 
     <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("9pDOJHmhrUQhpgEv8");
+        })();
+
         // Mobile menu toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -786,6 +992,130 @@
                         mobileMenuToggle.querySelector('i').className = 'fas fa-bars';
                     }
                 });
+            }
+
+            // Reply modal functionality
+            const replyModal = document.getElementById('replyModal');
+            const replyForm = document.getElementById('replyForm');
+            const closeModal = document.getElementById('closeModal');
+            const cancelReply = document.getElementById('cancelReply');
+            const sendReply = document.getElementById('sendReply');
+            const replyBtns = document.querySelectorAll('.reply-btn');
+
+            // Open reply modal
+            replyBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const email = this.getAttribute('data-email');
+                    const name = this.getAttribute('data-name');
+                    const subject = this.getAttribute('data-subject');
+                    
+                    document.getElementById('replyTo').value = email;
+                    document.getElementById('replyName').value = name;
+                    document.getElementById('replySubject').value = 'Re: ' + (subject || 'Contact Form Message');
+                    document.getElementById('replyMessage').value = '';
+                    
+                    replyModal.classList.add('show');
+                });
+            });
+
+            // Close modal functions
+            function closeReplyModal() {
+                replyModal.classList.remove('show');
+                replyForm.reset();
+            }
+
+            closeModal.addEventListener('click', closeReplyModal);
+            cancelReply.addEventListener('click', closeReplyModal);
+
+            // Close modal when clicking outside
+            replyModal.addEventListener('click', function(e) {
+                if (e.target === replyModal) {
+                    closeReplyModal();
+                }
+            });
+
+            // Handle reply form submission
+            replyForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const btnText = sendReply.querySelector('.btn-text');
+                const btnLoading = sendReply.querySelector('.btn-loading');
+                
+                // Show loading state
+                sendReply.disabled = true;
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline-flex';
+                
+                // Get form data
+                const formData = new FormData(replyForm);
+                const now = new Date();
+                const date = now.toLocaleDateString();
+                const time = now.toLocaleTimeString();
+                
+                const templateParams = {
+                    from_name: 'Vaegarcon Admin',
+                    from_email: 'info@vaegarcon.com',
+                    to_name: formData.get('replyName'),
+                    to_email: formData.get('replyTo'),
+                    subject: formData.get('replySubject'),
+                    message: formData.get('replyMessage'),
+                    reply_to: 'info@vaegarcon.com',
+                    date: date,
+                    time: time
+                };
+                
+                // Send email via EmailJS
+                emailjs.send('service_eackrli', 'template_antaetp', templateParams)
+                    .then(function(response) {
+                        console.log('Reply sent successfully!', response.status, response.text);
+                        
+                        // Show success message
+                        showAlert('Reply sent successfully!', 'success');
+                        
+                        // Close modal
+                        closeReplyModal();
+                        
+                        // Update message status to replied
+                        updateMessageStatus();
+                        
+                    }, function(error) {
+                        console.error('Failed to send reply:', error);
+                        showAlert('Failed to send reply. Please try again.', 'error');
+                    })
+                    .finally(function() {
+                        // Reset button state
+                        sendReply.disabled = false;
+                        btnText.style.display = 'inline';
+                        btnLoading.style.display = 'none';
+                    });
+            });
+
+            function showAlert(message, type) {
+                // Remove existing alerts
+                const existingAlerts = document.querySelectorAll('.alert');
+                existingAlerts.forEach(alert => alert.remove());
+                
+                // Create new alert
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type}`;
+                alertDiv.textContent = message;
+                
+                // Insert at top of main content
+                const main = document.querySelector('.admin-main .container');
+                main.insertBefore(alertDiv, main.firstChild);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 5000);
+            }
+
+            function updateMessageStatus() {
+                // This would typically update the message status to 'replied'
+                // For now, we'll just refresh the page to show updated status
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             }
         });
     </script>

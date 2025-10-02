@@ -91,7 +91,12 @@ include VIEWS_PATH . '/layouts/header.php';
                             <span class="error"><?php echo $errors['message']; ?></span>
                         <?php endif; ?>
                     </div>
-                    <button type="submit" class="btn-primary">Send Message</button>
+                    <button type="submit" class="btn-primary" id="submitBtn">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Sending...
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -102,3 +107,150 @@ include VIEWS_PATH . '/layouts/header.php';
 // Include footer
 include VIEWS_PATH . '/layouts/footer.php';
 ?>
+
+<!-- EmailJS Integration -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+// Initialize EmailJS
+(function() {
+    emailjs.init("9pDOJHmhrUQhpgEv8");
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    
+    contactForm.addEventListener('submit', function(e) {
+        // Don't prevent default - let the form submit normally to the server
+        // This ensures database storage continues to work
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline-flex';
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const now = new Date();
+        const date = now.toLocaleDateString();
+        const time = now.toLocaleTimeString();
+        
+        const templateParams = {
+            from_name: formData.get('name'),
+            from_email: 'info@vaegarcon.com', // Use authenticated sender address
+            reply_to: formData.get('email'), // Set reply-to as the actual sender
+            subject: formData.get('subject') || 'Contact Form Submission',
+            message: formData.get('message'),
+            to_email: 'info@vaegarcon.com',
+            date: date,
+            time: time,
+            customer_name: formData.get('name'),
+            customer_email: formData.get('email')
+        };
+        
+        // Send email via EmailJS (this runs in parallel with form submission)
+        emailjs.send('service_eackrli', 'template_antaetp', templateParams)
+            .then(function(response) {
+                console.log('Email sent successfully!', response.status, response.text);
+                
+                // Show success message
+                showMessage('Your message has been sent successfully! We will get back to you soon.', 'success');
+                
+            }, function(error) {
+                console.error('Failed to send email:', error);
+                
+                // Show warning message but don't prevent form submission
+                showMessage('Message saved! Email notification may be delayed.', 'warning');
+            })
+            .finally(function() {
+                // Reset button state after a short delay to allow form submission
+                setTimeout(function() {
+                    submitBtn.disabled = false;
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                }, 1000);
+            });
+        
+        // Let the form submit normally to the server for database storage
+        // The server will handle the database insertion and show appropriate messages
+    });
+    
+    function showMessage(message, type) {
+        // Remove existing messages
+        const existingAlerts = document.querySelectorAll('.alert');
+        existingAlerts.forEach(alert => alert.remove());
+        
+        // Create new message element
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type}`;
+        alertDiv.textContent = message;
+        
+        // Insert before the contact form
+        const contactGrid = document.querySelector('.contact-grid');
+        contactGrid.insertBefore(alertDiv, contactGrid.firstChild);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 5000);
+    }
+});
+</script>
+
+<style>
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-loading {
+    display: none;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    animation: slideDown 0.3s ease-out;
+}
+
+.alert-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.alert-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.alert-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fbbf24;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>

@@ -67,7 +67,7 @@ class HomeController extends BaseController {
                 
                 if ($result) {
                     // Set success message
-                    $this->setData('success', 'Your message has been sent successfully!');
+                    $this->setData('success', 'Your message has been received! We will get back to you soon.');
                 } else {
                     // Set error message
                     $this->setData('error', 'Failed to send message. Please try again later.');
