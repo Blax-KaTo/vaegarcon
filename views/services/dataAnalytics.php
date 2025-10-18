@@ -148,7 +148,7 @@
         <div class="cta-content">
             <h2>Ready to Unlock the Power of Your Data?</h2>
             <p>Contact us today for a consultation and discover how our analytics solutions can transform your operations.</p>
-            <a href="/Vaegarcon/home/contact" class="btn btn-primary">Request a Consultation</a>
+            <a href="<?php echo BASE_URL; ?>/home/contact" class="btn-primary">Request a Consultation</a>
         </div>
     </div>
 </section>

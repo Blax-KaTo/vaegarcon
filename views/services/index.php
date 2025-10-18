@@ -9,7 +9,7 @@ include VIEWS_PATH . '/layouts/header.php';
 <section class="page-header">
     <div class="container">
         <h1>Our Services</h1>
-        <p>Comprehensive solutions for fuel management, telemetry, and operational excellence</p>
+        <p>Comprehensive solutions for fuel and energy management with real-time monitoring and reporting capability to guarantee operational excellence.</p>
     </div>
 </section>
 
@@ -25,7 +25,7 @@ include VIEWS_PATH . '/layouts/header.php';
             <!-- Telemetry & Tank Monitoring -->
             <a href="<?php echo BASE_URL; ?>/services/telemetry" class="service-card large service-link">
                 <div class="service-image">
-                    <img src="<?php echo BASE_URL; ?>/images/services/telemetry.jpg" alt="Telemetry & Tank Monitoring">
+                    <img src="<?php echo BASE_URL; ?>/uploads/services/Tank Monitoring.jpg" alt="Telemetry & Tank Monitoring">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">
@@ -46,7 +46,7 @@ include VIEWS_PATH . '/layouts/header.php';
             <!-- Fuel Management Systems -->
             <a href="<?php echo BASE_URL; ?>/services/fuelManagement" class="service-card large service-link">
                 <div class="service-image">
-                    <img src="<?php echo BASE_URL; ?>/images/services/fuel-management.jpg" alt="Fuel Management Systems">
+                    <img src="<?php echo BASE_URL; ?>/uploads/services/Fuel Management System.jpg" alt="Fuel Management Systems">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">
@@ -67,7 +67,7 @@ include VIEWS_PATH . '/layouts/header.php';
             <!-- Data Analytics -->
             <a href="<?php echo BASE_URL; ?>/services/dataAnalytics" class="service-card large service-link">
                 <div class="service-image">
-                    <img src="<?php echo BASE_URL; ?>/images/services/data-analytics.jpg" alt="Data Analytics">
+                    <img src="<?php echo BASE_URL; ?>/uploads/services/Data Analysis.jpg" alt="Data Analytics">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">
@@ -88,7 +88,7 @@ include VIEWS_PATH . '/layouts/header.php';
             <!-- Renewable Energy Solutions -->
             <a href="<?php echo BASE_URL; ?>/services/renewableEnergy" class="service-card large service-link">
                 <div class="service-image">
-                    <img src="<?php echo BASE_URL; ?>/images/services/renewable-energy.jpg" alt="Renewable Energy Solutions">
+                    <img src="<?php echo BASE_URL; ?>/uploads/services/Renewable Energy Services.jpg" alt="Renewable Energy Solutions">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">

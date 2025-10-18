@@ -140,7 +140,7 @@
         <div class="cta-content">
             <h2>Ready to Optimize Your Fuel Operations?</h2>
             <p>Contact us today for a consultation and personalized demonstration of our Fuel Management Systems.</p>
-            <a href="/Vaegarcon/home/contact" class="btn btn-primary">Request a Consultation</a>
+            <a href="<?php echo BASE_URL; ?>/home/contact" class="btn btn-primary">Request a Consultation</a>
         </div>
     </div>
 </section>

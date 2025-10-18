@@ -16,8 +16,8 @@ $heroImages = $siteSettingsModel->getActiveHeroImages();
 <section class="hero">
     <div class="container">
         <div class="hero-content">
-            <h1><span class="text-gradient">Fuel & Telemetry</span>
-            <span>Engineering Solutions</span></h1>
+            <h1><span class="text-gradient">Engineered Fuel and Energy</span>
+            <span>Management Solutions</span></h1>
             <p>Delivering reliable, data-driven technology for safe, efficient, and profitable operations across Africa.</p>
             <div class="hero-slider">
                 <?php if (!empty($heroImages)): ?>

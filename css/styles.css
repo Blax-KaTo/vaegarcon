@@ -261,10 +261,10 @@ nav ul li a:hover {
 
 .m-content {
     display: flex;
-    align-items: start;
+    align-items: center;
     flex-direction: column;
     justify-content: start;
-    text-align: start;
+    text-align: center;
 }
 
 .mission-content h2 {
@@ -789,9 +789,8 @@ blockquote cite {
 
 .btn-text {
     display: inline-block;
-    color: #0056b3;
+    color: #ffffff;
     font-weight: 500;
-    margin-top: 15px;
 }
 
 .btn-text i {
