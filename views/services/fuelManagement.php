@@ -11,7 +11,7 @@
     <div class="container">
         <div class="service-intro">
             <div class="service-image">
-                <img src="/Vaegarcon/img/services/fuel-management.jpg" alt="Fuel Management Systems">
+                <img src="<?php echo BASE_URL; ?>/uploads/services/Fuel Management System.jpg" alt="Fuel Management Systems">
             </div>
             <div class="service-overview">
                 <h2>Comprehensive Fuel Management Solutions</h2>

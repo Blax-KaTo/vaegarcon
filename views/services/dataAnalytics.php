@@ -11,7 +11,7 @@
     <div class="container">
         <div class="service-intro">
             <div class="service-image">
-                <img src="/Vaegarcon/img/services/data-analytics.jpg" alt="Data Analytics Services">
+                <img src="<?php echo BASE_URL; ?>/uploads/services/Data Analysis.jpg" alt="Data Analytics Services">
             </div>
             <div class="service-overview">
                 <h2>Advanced Analytics Solutions</h2>

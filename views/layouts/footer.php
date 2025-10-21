@@ -14,13 +14,13 @@
                 </div>
                 <div class="footer-social">
                     <h3>Follow Us</h3>
-                    <a href="https://facebook.com/vaegarcon" target="_blank" class="social-icon" aria-label="Facebook">
+                    <a href="https://facebook.com/profile.php?id=61582372389768" target="_blank" class="social-icon" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="https://instagram.com/vaegarcon" target="_blank" class="social-icon" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://linkedin.com/company/vaegarcon" target="_blank" class="social-icon" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/vaegar-consulting-aa150338b/" target="_blank" class="social-icon" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>

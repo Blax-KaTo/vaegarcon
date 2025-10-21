@@ -11,9 +11,14 @@
 <!-- Service Details -->
 <section class="service-details">
     <div class="container">
-        <div class="section-intro">
-            <h2>Innovative Solar Solutions for Your Operations</h2>
-            <p>At Vaegarcon, we're committed to helping businesses transition to sustainable energy solutions. Our comprehensive renewable energy services combine cutting-edge solar technology with expert implementation to deliver reliable, cost-effective power solutions.</p>
+        <div class="service-intro">
+            <div class="service-image">
+                <img src="<?php echo BASE_URL; ?>/uploads/services/Renewable Energy Services.jpg" alt="Renewable Energy Solutions">
+            </div>
+            <div class="service-overview">
+                <h2>Innovative Solar Solutions for Your Operations</h2>
+                <p>At Vaegarcon, we're committed to helping businesses transition to sustainable energy solutions. Our comprehensive renewable energy services combine cutting-edge solar technology with expert implementation to deliver reliable, cost-effective power solutions.</p>
+            </div>
         </div>
 
         <div class="service-features">

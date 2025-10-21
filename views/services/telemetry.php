@@ -18,7 +18,7 @@ include VIEWS_PATH . '/layouts/header.php';
     <div class="container">
         <div class="service-intro">
             <div class="service-image">
-                <img src="<?php echo BASE_URL; ?>/images/services/telemetry-detail.jpg" alt="Telemetry & Tank Monitoring Systems">
+                <img src="<?php echo BASE_URL; ?>/uploads/services/Tank Monitoring.jpg" alt="Telemetry & Tank Monitoring Systems">
             </div>
             <div class="service-overview">
                 <h2>Advanced Monitoring for Complete Visibility</h2>
